@@ -1,0 +1,115 @@
+@import url('https://www.fontify.me/wf/dc7a13e45efeea54e65459beb349c5c4');
+@import url("https://codepen.io/dapacreative/pen/bdzYEe.css");
+
+$width: 476;
+// Info from facebook posts
+$min-height: 0;
+$max-height: 714;
+$text-color: #1d2129;
+$background-color: #E9EBEE;
+$font-size: 30;
+$pic-bg-color: #76ff03;
+$pic-text-color: #000000;
+
+* {
+	text-align: center;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html { height: 100%; }
+
+body {
+  background-color: $background-color;
+}
+
+h1 {
+	margin-top: 35px;
+	color: #1d2129;
+	font-family: Montserrat;
+	text-transform: uppercase;
+	font-size: 30px;
+	line-height: 30px;
+	letter-spacing: 2px;
+}
+
+.mag, .mag-wrap {
+	margin: 0 auto;
+	width: $width + px;
+	height: auto;
+  max-height: $max-height + px;
+  min-height: $min-height + px;
+
+  background: $pic-bg-color;
+  background-image: url("http://themommymyway.com/wp-content/uploads/2017/06/3D-Cactus.png");
+  background-size: 100px;
+  
+}
+
+.mag {
+	background-position: center;
+	overflow: hidden;
+	padding: 30px 10px 30px 10px;
+  display: inline-block;
+}
+
+
+.headline {
+	font-family: font92942;
+	font-weight: 700;
+	color: $pic-text-color;
+	/*text-transform: lowercase;*/
+	text-align: center;
+  position: relative;
+	font-size: $font-size + px;
+	word-wrap: break-word;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
+.byline {
+	margin: 0 auto;
+	max-width: 300px;
+	padding: 2em;
+	color: #fff;
+	font-family: Montserrat;
+	a {
+		color: tint($background-color, 80%);
+	}
+}
+
+.lightbox {
+	display: none;
+	position: fixed;
+	top: 0;
+	z-index: 500;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(#1c1c1c, 0.7);
+}
+
+.closebox {
+	color: #fff;
+	text-decoration: none;
+	font-size: 50px;
+	position: fixed;
+	top: 20px;
+	right: 25px;
+}
+
+.image {
+	display: none;
+	position: fixed;
+	top: 25px;
+	right: 70px;
+	margin: 0 auto;
+	z-index: 1000;
+}
+
+.cactus{
+  //position: fixed;
+}
