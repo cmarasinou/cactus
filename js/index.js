@@ -62,18 +62,12 @@ $(document).ready(function(){
           cactus_img.onload = function(){
             ctx.drawImage(cactus_img,canvas.width-cactus_img.width,canvas.height-cactus_img.height);
 					}
-					//ctx.font="30px Arial";
-					//ctx.fillStyle = "red";
-					//var txt="Hello World"
-					//ctx.fillText("width:" + ctx.measureText(txt).width,10,50)
-					//ctx.fillText(txt,100,100);
 					var txt="Na kateveneis mes ton psofo gia na paeis supermarket, na prp na diastaurwseis fwta pou en svista, na pieneis ws jiame j nan kleisto logw power outage epeidi fisa kai meta na perimeneis ksana mesa ston psofo gia to epomeno bus.";
 					var canvas_font_size = 30;
 					var max_width = 300;
-					var canvas_font_family = "font92942";
+					var canvas_font_family = "Gaegu";
 					var lineheight = canvas_font_size;
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
-					//console.log(paragraph)
 					ctx.font=canvas_font_size+"px "+canvas_font_family;
 					ctx.fillStyle = "red";
 					for (var i = 0; i<lines.length; i++){
