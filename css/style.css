@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Gaegu");
 @import url("https://www.fontify.me/wf/dc7a13e45efeea54e65459beb349c5c4");
 @import url("https://codepen.io/dapacreative/pen/bdzYEe.css");
 * {
@@ -43,7 +44,7 @@ h1 {
 }
 
 .headline {
-  font-family: font92942;
+  font-family: 'Gaegu', cursive;
   font-weight: 700;
   color: #000000;
   /*text-transform: lowercase;*/
@@ -59,7 +60,7 @@ h1 {
   max-width: 300px;
   padding: 2em;
   color: #fff;
-  font-family: Montserrat;
+  /*font-family: Montserrat;*/
 }
 .byline a {
   color: tint(#E9EBEE, 80%);
