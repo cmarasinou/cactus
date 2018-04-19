@@ -13,13 +13,32 @@ $('form').submit(function(e){
 $(document).ready(function(){
 
 	$('button').on('click', function(){
-		html2canvas($(".mag"),{
+		/*html2canvas($(".mag-wrap"),{
+				//allowTaint: true,
+				//logging: true,
+				//taintTest: false,
         onrendered: function(canvas) {
           var myImage = canvas.toDataURL("image/png");
 					$('.lightbox').fadeIn(200);
 					$('.image').attr('src', myImage).fadeIn(200);
         }
-    });
+    });*/
+
+		var canvas = document.getElementById('canvas');
+		var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+          var ctx = canvas.getContext('2d');
+					// Color the canvas
+					ctx.fillStyle = "blue";
+					ctx.fillRect(0, 0, canvas.width, canvas.height);
+					// Draw the cactus
+					var cactus_img = new Image();
+          cactus_img.src = "./img/cactus-mini.png";
+          // Make sure the image is loaded first otherwise nothing will draw.
+          cactus_img.onload = function(){
+            ctx.drawImage(cactus_img,canvas.width-cactus_img.width,canvas.height-cactus_img.height);
+					}
+				}
 	});
 
 	$('.closebox').on('click', function(){
