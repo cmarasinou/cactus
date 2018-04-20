@@ -26,21 +26,21 @@ h1 {
   letter-spacing: 2px;
 }
 
-.mag, .mag-wrap {
+.story, .story-wrap {
   margin: 0 auto;
   width: 476px;
   height: auto;
   max-height: 714px;
   min-height: 0px;
   background: #76ff03;
+  color: #000001; /*Replace with color for text*/
 }
 
 
-.mag {
+.story {
   background-position: center;
   overflow: hidden;
   padding: 10px 10px 0px 10px;
-  display: inline-block;
   /*
   No adding as background for now
   background-size: 80px;
@@ -52,7 +52,6 @@ h1 {
 .headline {
   font-family: 'Gaegu', cursive;
   font-weight: 700;
-  color: #000000;
   /*text-transform: lowercase;*/
   text-align: center;
   position: relative;

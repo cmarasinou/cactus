@@ -22,7 +22,7 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 		current_txt += words[i] + " ";
 		if (ctx_canvas.measureText(current_txt).width >= max_width) {
 			txt_in_lines.push(previous_txt);//Add new line in array
-			current_txt = words[i];
+			current_txt = words[i]+ " ";
 			previous_txt = current_txt;
 		}
 		previous_txt = current_txt;
@@ -32,6 +32,7 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 	}
 	return txt_in_lines;
 }
+
 
 
 $(document).ready(function(){
@@ -49,34 +50,39 @@ $(document).ready(function(){
     });*/
 
 		var canvas = document.getElementById('canvas');
+		var story_div = document.getElementById('story-box');
+		var story_div_style = window.getComputedStyle(story_div, null);
 		var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
 					// Color the canvas
-					ctx.fillStyle = "blue";
+					ctx.fillStyle = story_div_style["background-color"];
 					ctx.fillRect(0, 0, canvas.width, canvas.height);
 					// Draw the cactus
 					var cactus_img = new Image();
           cactus_img.src = "./img/cactus-mini.png";
           // Make sure the image is loaded first otherwise nothing will draw.
           cactus_img.onload = function(){
-            ctx.drawImage(cactus_img,canvas.width-cactus_img.width,canvas.height-cactus_img.height);
+						x_img = (canvas.width-cactus_img.width)/2; //In center
+						y_img = canvas.height-cactus_img.height; //At the bottom
+            ctx.drawImage(cactus_img, x_img, y_img);
 					}
+					//Draw the text
 					var txt="Na kateveneis mes ton psofo gia na paeis supermarket, na prp na diastaurwseis fwta pou en svista, na pieneis ws jiame j nan kleisto logw power outage epeidi fisa kai meta na perimeneis ksana mesa ston psofo gia to epomeno bus.";
 					var canvas_font_size = 30;
-					var max_width = 300;
+					var max_width = story_div_style["width"]; //e.g. "300px"
+					max_width =  Number(max_width.substring(0, max_width.length - 2));
 					var canvas_font_family = "Gaegu";
-					var lineheight = canvas_font_size;
+					var lineheight = 1.15 * canvas_font_size;
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
 					ctx.font=canvas_font_size+"px "+canvas_font_family;
-					ctx.fillStyle = "red";
+					ctx.fillStyle = story_div_style["color"];
 					for (var i = 0; i<lines.length; i++){
 						current_linewidth = ctx.measureText(lines[i]).width;
 						x_txt =  (max_width - current_linewidth)/2; //for centering
-						y_txt =  canvas_font_size + (i*lineheight);
+						y_txt =  10 + canvas_font_size + (i*lineheight);
 						ctx.fillText(lines[i], x_txt, y_txt);
 					}
-					console.log(lines)
 				}
 	});
 
