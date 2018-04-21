@@ -59,7 +59,7 @@
 
 		// uploading photo on user timeline
 		function uploadPhoto() {
-			FB.api('/518298776', 'post', {source: 'img/cactus.png'}, function(response) {
+			FB.api('/518298776', 'post', {message: 'Hey'}, function(response) {
 				if (!response || response.error) {
 					document.getElementById('status').innerHTML = "Error!";
 				} else {
