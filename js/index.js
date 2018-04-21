@@ -69,14 +69,14 @@ $(document).ready(function(){
 
 	$('.color-row').html(table_html);
 
-
+/////////////////////////////////////
 // Create Image
+////////////////////////////////////
+
 	$('button').on('click', function(){
 		var canvas = document.getElementById('canvas');
-		//var story_div = document.getElementById('story-box');
-		//var story_div_style = window.getComputedStyle(story_div, null);
-		var canvas = document.getElementById('canvas');
-
+		// Set canvas size
+		canvas.height = $('.story').height();
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
 					// Color the canvas
