@@ -62,9 +62,9 @@
 			FB.api('/518298776', 'post', {source: 'img/cactus.png'}, function(response) {
 				if (!response || response.error) {
 					document.getElementById('status').innerHTML = "Error!";
-					console.log(response);
 				} else {
 					document.getElementById('status').innerHTML = response.id;
+					console.log(response);
 				}
 			});
 		}
