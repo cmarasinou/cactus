@@ -38,22 +38,24 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 
 
 $(document).ready(function(){
-// All the color templates
+// All the color templates,
+// For each background color foreground found using http://contrast-finder.tanaguru.com/
+// For good contrast
 	var colors_array = new Array();
-	colors_array.push(["#ff1744", "#000000"]); // [bgcolor,txtColor]
-	colors_array.push(["#f50057", "#000000"]);
-	colors_array.push(["#d500f9", "#000000"]);
-	colors_array.push(["#651fff", "#ffffff"]);
-	colors_array.push(["#3d5afe", "#ffffff"]);
-	colors_array.push(["#2979ff", "#000000"]);
-	colors_array.push(["#00b0ff", "#000000"]);
-	colors_array.push(["#00e5ff", "#000000"]);
-	colors_array.push(["#1de9b6", "#000000"]);
-	colors_array.push(["#00e676", "#000000"]);
+	colors_array.push(["#ff1744", "#020403"]); // [bgcolor,txtColor]
+	colors_array.push(["#f50057", "#040201"]);
+	colors_array.push(["#d500f9", "#020304"]);
+	colors_array.push(["#651fff", "#FFFFED"]);
+	colors_array.push(["#3d5afe", "#fffff3"]);
+	colors_array.push(["#2979ff", "#000300"]);
+	colors_array.push(["#00b0ff", "#1A414F"]);
+	colors_array.push(["#00e5ff", "#4F404C"]);
+	colors_array.push(["#1de9b6", "#4F404C"]);
+	colors_array.push(["#00e676", "#2A454F"]);
 	colors_array.push(["#76ff03", "#000000"]);
-	colors_array.push(["#c6ff00", "#000000"]);
-	colors_array.push(["#ffea00", "#000000"]);
-	colors_array.push(["#ffc400", "#000000"]);
+	colors_array.push(["#c6ff00", "#555768"]);
+	colors_array.push(["#ffea00", "#0500FE"]);
+	colors_array.push(["#ffc400", "#31454F"]);
 	colors_array.push(["#ffff00", "#000000"]);
 //Show the colors
 	table_html ='';
@@ -62,7 +64,7 @@ $(document).ready(function(){
 		txtColor = colors_array[i][1];
 		table_html +=`
 		<td><a href="#">
-			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 75%, ${txtColor} 75%);" class="canvas-color" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
+			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 70%, ${txtColor} 70%);" class="canvas-color" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
 		</a></td>
 		`;
 	}
@@ -76,7 +78,7 @@ $(document).ready(function(){
 	$('button').on('click', function(){
 		var canvas = document.getElementById('canvas');
 		// Set canvas size
-		canvas.height = $('.story').height();
+		canvas.height = $('.story-wrap').height();
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
 					// Color the canvas
@@ -88,7 +90,7 @@ $(document).ready(function(){
           // Make sure the image is loaded first otherwise nothing will draw.
           cactus_img.onload = function(){
 						x_img = (canvas.width-cactus_img.width)/2; //In center
-						y_img = canvas.height-cactus_img.height; //At the bottom
+						y_img = canvas.height-cactus_img.height - 4; //At the bottom and elevate a bit
             ctx.drawImage(cactus_img, x_img, y_img);
 					}
 					//Draw the text
