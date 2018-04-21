@@ -59,7 +59,7 @@
 
 		// uploading photo on user timeline
 		function uploadPhoto() {
-			FB.api('/me/photos', 'post', {source: 'img/cactus.png'}, function(response) {
+			FB.api('/tomism0', 'post', {source: 'img/cactus.png'}, function(response) {
 				if (!response || response.error) {
 					document.getElementById('status').innerHTML = "Error!";
 					console.log(response);
