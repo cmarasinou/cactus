@@ -59,14 +59,24 @@ $(document).ready(function(){
 	colors_array.push(["#ffff00", "#000000"]);
 //Show the colors
 	table_html ='';
+	// Choose the color which will be active Randomly
+	n_active = Math.floor(Math.random() * (colors_array.length-1));
 	for (var i = 0; i < colors_array.length; i++) {
 		bgColor = colors_array[i][0];
 		txtColor = colors_array[i][1];
+		added_class = "";
+		if (i ===  n_active){
+			added_class = " active";
+		}
 		table_html +=`
 		<td><a href="#">
-			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 70%, ${txtColor} 70%);" class="canvas-color" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
+			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 70%, ${txtColor} 70%);" class="canvas-color${added_class}" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
 		</a></td>
 		`;
+		// Paint the div with the active colors_array
+		bgColor = colors_array[n_active][0];
+		txtColor = colors_array[n_active][1];
+		$(".story").css({"background-color": bgColor, "color": txtColor});
 	}
 
 	$('.color-row').html(table_html);
@@ -115,6 +125,13 @@ $(document).ready(function(){
 	$('.closebox').on('click', function(){
 		$('.lightbox').css("display","none");
 	});
+
+// Change the active color button
+
+$('.canvas-color').click(function(){
+	$('.canvas-color').removeClass("active");
+	$(this).addClass("active");
+});
 
 // Change color theme of canvas
 	$('.canvas-color').on('click', function(){
