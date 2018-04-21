@@ -12,7 +12,7 @@ $('form').submit(function(e){
 
 // Split the text into lines for the canvas drawing
 function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
-	ctx_canvas.font=font_size+"px "+font_family;
+	ctx_canvas.font="500 "+font_size+"px "+font_family;  //font weight 500, since canvas renders thicker fonts
 	words = txt.split(" ");
 	current_txt = "";
 	previous_txt = "";
@@ -35,28 +35,52 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 
 
 
+
+
 $(document).ready(function(){
+// All the color templates
+	var colors_array = new Array();
+	colors_array.push(["#ff1744", "#000000"]); // [bgcolor,txtColor]
+	colors_array.push(["#f50057", "#000000"]);
+	colors_array.push(["#d500f9", "#000000"]);
+	colors_array.push(["#651fff", "#ffffff"]);
+	colors_array.push(["#3d5afe", "#ffffff"]);
+	colors_array.push(["#2979ff", "#000000"]);
+	colors_array.push(["#00b0ff", "#000000"]);
+	colors_array.push(["#00e5ff", "#000000"]);
+	colors_array.push(["#1de9b6", "#000000"]);
+	colors_array.push(["#00e676", "#000000"]);
+	colors_array.push(["#76ff03", "#000000"]);
+	colors_array.push(["#c6ff00", "#000000"]);
+	colors_array.push(["#ffea00", "#000000"]);
+	colors_array.push(["#ffc400", "#000000"]);
+	colors_array.push(["#ffff00", "#000000"]);
+//Show the colors
+	table_html ='';
+	for (var i = 0; i < colors_array.length; i++) {
+		bgColor = colors_array[i][0];
+		txtColor = colors_array[i][1];
+		table_html +=`
+		<td><a href="#">
+			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 75%, ${txtColor} 75%);" class="canvas-color" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
+		</a></td>
+		`;
+	}
 
+	$('.color-row').html(table_html);
+
+
+// Create Image
 	$('button').on('click', function(){
-		/*html2canvas($(".mag-wrap"),{
-				//allowTaint: true,
-				//logging: true,
-				//taintTest: false,
-        onrendered: function(canvas) {
-          var myImage = canvas.toDataURL("image/png");
-					$('.lightbox').fadeIn(200);
-					$('.image').attr('src', myImage).fadeIn(200);
-        }
-    });*/
+		var canvas = document.getElementById('canvas');
+		//var story_div = document.getElementById('story-box');
+		//var story_div_style = window.getComputedStyle(story_div, null);
+		var canvas = document.getElementById('canvas');
 
-		var canvas = document.getElementById('canvas');
-		var story_div = document.getElementById('story-box');
-		var story_div_style = window.getComputedStyle(story_div, null);
-		var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
 					// Color the canvas
-					ctx.fillStyle = story_div_style["background-color"];
+					ctx.fillStyle = $(".story").css("background-color");
 					ctx.fillRect(0, 0, canvas.width, canvas.height);
 					// Draw the cactus
 					var cactus_img = new Image();
@@ -68,15 +92,15 @@ $(document).ready(function(){
             ctx.drawImage(cactus_img, x_img, y_img);
 					}
 					//Draw the text
-					var txt="Na kateveneis mes ton psofo gia na paeis supermarket, na prp na diastaurwseis fwta pou en svista, na pieneis ws jiame j nan kleisto logw power outage epeidi fisa kai meta na perimeneis ksana mesa ston psofo gia to epomeno bus.";
+					var txt= $('.headline').text();
 					var canvas_font_size = 30;
-					var max_width = story_div_style["width"]; //e.g. "300px"
+					var max_width = $(".story").css("width"); //e.g. "300px"
 					max_width =  Number(max_width.substring(0, max_width.length - 2));
 					var canvas_font_family = "Gaegu";
 					var lineheight = 1.15 * canvas_font_size;
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
-					ctx.font=canvas_font_size+"px "+canvas_font_family;
-					ctx.fillStyle = story_div_style["color"];
+					ctx.font="500 " + canvas_font_size+"px "+canvas_font_family; //font weight 500, since canvas renders thicker fonts
+					ctx.fillStyle = $(".story").css("color");
 					for (var i = 0; i<lines.length; i++){
 						current_linewidth = ctx.measureText(lines[i]).width;
 						x_txt =  (max_width - current_linewidth)/2; //for centering
@@ -90,33 +114,10 @@ $(document).ready(function(){
 		$('.lightbox').css("display","none");
 	});
 
+// Change color theme of canvas
+	$('.canvas-color').on('click', function(){
+		divbgColor = this.dataset.bgcolor;
+		divtxtColor = this.dataset.txtcolor;
+		$(".story").css({"background-color": divbgColor, "color": divtxtColor});
+	});
 });
-
-
-
-//!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-
-
-
-
-
-
-//var node = document.getElementById('mycanvas');
-
-/*domtoimage.toPng(node)
-    .then(function (dataUrl) {
-        var img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-    })
-    .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-    });*/
-
-/*domtoimage.toJpeg(document.getElementById('mycanvas'), { quality: 0.95 })
-    .then(function (dataUrl) {
-        var link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
-        link.href = dataUrl;
-        link.click();
-    });*/
