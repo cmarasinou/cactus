@@ -42,7 +42,7 @@ const upload = async (response) => {
       method:'post'
   });
   // Show to user that is uploading
-  $('fb_share').html("Sharing");
+  $('#fb_share').html("Sharing");
   responseFB = await responseFB.json();
   console.log(responseFB);
 };
