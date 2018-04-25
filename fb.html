@@ -23,7 +23,7 @@
 				FB.init({
 					appId      : '1616038958474519',
 					xfbml      : true,
-					version    : 'v2.12'
+					version    : 'v2.5'
 				});
 		};
 		(function(d, s, id){
@@ -54,7 +54,7 @@
 			formData.append('access_token', response.authResponse.accessToken);
 			formData.append('source', blob);
 
-			let responseFB = await fetch(`https://graph.facebook.com/2187132854848315/photos`, {
+			let responseFB = await fetch(`https://graph.facebook.com/383691685367852/photos`, {
 					body: formData,
 					method:'post'
 			});

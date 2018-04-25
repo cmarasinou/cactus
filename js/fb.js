@@ -1,7 +1,7 @@
 // initialize and setup facebook js sdk
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1616038958474519',
+      appId      : '1746403815421336',
       xfbml      : true,
       version    : 'v2.5'
     });
@@ -36,10 +36,10 @@ const upload = async (response) => {
   let formData = new FormData();
   formData.append('access_token', response.authResponse.accessToken);
   formData.append('source', blob);
-  groupid = 383691685367852; // Choose the facebook group id
+  pageid = 383691685367852; // Choose the facebook page id
   // Show to user that is uploading
   $('#fb_share').html('<i class="fa fa-circle-o-notch fa-spin"></i> Sharing');
-  let responseFB = await fetch('https://graph.facebook.com/'+groupid+'/photos', {
+  let responseFB = await fetch('https://graph.facebook.com/'+pageid+'/photos', {
       body: formData,
       method:'post'
   });
