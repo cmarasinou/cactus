@@ -131,7 +131,7 @@ $(document).ready(function(){
 			    } else {
 			      console.log("Didn't manage to login.");
 			    }
-			},{ scope: 'publish_actions'})
+			},{ scope: 'publish_pages'})
 	});
 
 	// Change the active-color button
@@ -153,7 +153,7 @@ window.fbAsyncInit = function() {
     FB.init({
       appId      : '2022149611440580',
       xfbml      : true,
-      version    : 'v2.5'
+      version    : 'v2.12'
     });
 };
 (function(d, s, id){
