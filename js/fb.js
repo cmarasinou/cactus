@@ -38,7 +38,7 @@ const upload = async (response) => {
   formData.append('source', blob);
   groupid = 383691685367852; // Choose the facebook group id
   // Show to user that is uploading
-  $('#fb_share').html("Sharing");
+  $('#fb_share').html('<i class="fa fa-circle-o-notch fa-spin"></i> Sharing');
   let responseFB = await fetch('https://graph.facebook.com/'+groupid+'/photos', {
       body: formData,
       method:'post'
