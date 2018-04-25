@@ -25,19 +25,7 @@
 					xfbml      : true,
 					version    : 'v2.5'
 				});
-
-				FB.getLoginStatus(function(response) {
-					if (response.status === 'connected') {
-						document.getElementById('status').innerHTML = 'We are connected.';
-						document.getElementById('login').style.visibility = 'hidden';
-					} else if (response.status === 'not_authorized') {
-						document.getElementById('status').innerHTML = 'We are not logged in.'
-					} else {
-						document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-					}
-				});
 		};
-
 		(function(d, s, id){
 				var js, fjs = d.getElementsByTagName(s)[0];
 				if (d.getElementById(id)) {return;}
@@ -46,74 +34,48 @@
 				fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 
-		// login with facebook with extened publish_actions permission
-		function login() {
-			FB.login(function(response) {
-				if (response.status === 'connected') {
-						document.getElementById('status').innerHTML = 'We are connected.';
-						document.getElementById('login').style.visibility = 'hidden';
-					} else if (response.status === 'not_authorized') {
-						document.getElementById('status').innerHTML = 'We are not logged in.'
-					} else {
-						document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-					}
-			}, {scope: 'publish_actions'});
-		}
-
-		// getting basic user info
-		function getInfo() {
-			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
-				document.getElementById('status').innerHTML = response.id;
-			});
-		}
-
-		// uploading photo on user timeline
-		function uploadPhoto() {
-			FB.api('/518298776', 'post', {message: 'Hey'}, function(response) {
-				if (!response || response.error) {
-					document.getElementById('status').innerHTML = "Error!";
-				} else {
-					document.getElementById('status').innerHTML = response.id;
-					console.log(response);
-				}
-			});
-		}
-
-
 		const dataURItoBlob = (dataURI) => {
-		let byteString = atob(dataURI.split(',')[1]);
-		let ab = new ArrayBuffer(byteString.length);
-		let ia = new Uint8Array(ab);
-		for (let i = 0; i < byteString.length; i++) {
-				ia[i] = byteString.charCodeAt(i);
-		}
-		return new Blob([ia], {
-				type: 'image/jpeg'
-		});
+			let byteString = atob(dataURI.split(',')[1]);
+			let ab = new ArrayBuffer(byteString.length);
+			let ia = new Uint8Array(ab);
+			for (let i = 0; i < byteString.length; i++) {
+					ia[i] = byteString.charCodeAt(i);
+			}
+			return new Blob([ia], {
+					type: 'image/jpeg'
+			});
 		}
 
 		const upload = async (response) => {
-		let canvas = document.getElementById('canvas');
-		let dataURL = canvas.toDataURL('image/jpeg', 1.0);
-		let blob = dataURItoBlob(dataURL);
-		let formData = new FormData();
-		formData.append('access_token', response.authResponse.accessToken);
-		formData.append('source', blob);
+			let canvas = document.getElementById('canvas');
+			let dataURL = canvas.toDataURL('image/jpeg', 1.0);
+			let blob = dataURItoBlob(dataURL);
+			let formData = new FormData();
+			formData.append('access_token', response.authResponse.accessToken);
+			formData.append('source', blob);
 
-		let responseFB = await fetch(`https://graph.facebook.com/383691685367852/photos`, {
-				body: formData,
-				method:'post'
-		});
-		responseFB = await responseFB.json();
-		console.log(responseFB);
+			let responseFB = await fetch(`https://graph.facebook.com/383691685367852/photos`, {
+					body: formData,
+					method:'post'
+			});
+			responseFB = await responseFB.json();
+			console.log(responseFB);
 		};
 
 		document.getElementById('upload').addEventListener('click', () => {
 		FB.login((response) => {
+			if (response.status === 'connected') {
+					document.getElementById('status').innerHTML = 'We are connected.';
+					document.getElementById('login').style.visibility = 'hidden';
+				} else if (response.status === 'not_authorized') {
+					document.getElementById('status').innerHTML = 'We are not logged in.'
+				} else {
+					document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+				}
 			console.log(response);
 				//TODO check if user is logged in and authorized publish_actions
 				upload(response);
-		}, {scope: 'publish_actions'})
+		},{scope: 'publish_actions'})
 })
 	</script>
 </body>
