@@ -16,64 +16,6 @@
 	<button onclick="getInfo()">Get Info</button>
 	<button onclick="login()" id="login">Login</button>
 
-
-	<script>
-		// initialize and setup facebook js sdk
-		window.fbAsyncInit = function() {
-				FB.init({
-					appId      : '1616038958474519',
-					xfbml      : true,
-					version    : 'v2.5'
-				});
-		};
-		(function(d, s, id){
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) {return;}
-				js = d.createElement(s); js.id = id;
-				js.src = "https://connect.facebook.net/en_US/sdk.js";
-				fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-
-		const dataURItoBlob = (dataURI) => {
-			let byteString = atob(dataURI.split(',')[1]);
-			let ab = new ArrayBuffer(byteString.length);
-			let ia = new Uint8Array(ab);
-			for (let i = 0; i < byteString.length; i++) {
-					ia[i] = byteString.charCodeAt(i);
-			}
-			return new Blob([ia], {
-					type: 'image/jpeg'
-			});
-		}
-
-		const upload = async (response) => {
-			let canvas = document.getElementById('canvas');
-			let dataURL = canvas.toDataURL('image/jpeg', 1.0);
-			let blob = dataURItoBlob(dataURL);
-			let formData = new FormData();
-			formData.append('access_token', response.authResponse.accessToken);
-			formData.append('source', blob);
-
-			let responseFB = await fetch(`https://graph.facebook.com/383691685367852/photos`, {
-					body: formData,
-					method:'post'
-			});
-			responseFB = await responseFB.json();
-			console.log(responseFB);
-		};
-
-		document.getElementById('upload').addEventListener('click', () => {
-		FB.login((response) => {
-			if (response.status === 'connected') {
-					console.log('We are connected.');
-					upload(response);
-				} else if (response.status === 'not_authorized') {
-					console.log('Not authorized.');
-				} else {
-					console.log("Didn't manage to login.");
-				}
-		},{scope: 'publish_actions'})
-})
-	</script>
+<script  src="js/fb.js"></script>
 </body>
 </html>

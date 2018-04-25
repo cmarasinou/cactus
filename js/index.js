@@ -85,8 +85,9 @@ $(document).ready(function(){
 // Create Image
 ////////////////////////////////////
 
-	$('button').on('click', function(){
+	$('#fb_share').on('click', function(){
 		var canvas = document.getElementById('canvas');
+		// Draw the image on canvas
 		// Set canvas size
 		canvas.height = $('.story-wrap').height();
         if (canvas.getContext) {
@@ -120,20 +121,28 @@ $(document).ready(function(){
 						ctx.fillText(lines[i], x_txt, y_txt);
 					}
 				}
+			// Post image on facebook
+			document.getElementById('fb_share').addEventListener('click', () => {
+			FB.login((response) => {
+			  if (response.status === 'connected') {
+			      console.log('We are connected.');
+			      upload(response);
+			    } else if (response.status === 'not_authorized') {
+			      console.log('Not authorized.');
+			    } else {
+			      console.log("Didn't manage to login.");
+			    }
+			},{scope: 'publish_actions'})
+			})
 	});
 
-	$('.closebox').on('click', function(){
-		$('.lightbox').css("display","none");
+	// Change the active-color button
+	$('.canvas-color').click(function(){
+		$('.canvas-color').removeClass("active");
+		$(this).addClass("active");
 	});
 
-// Change the active color button
-
-$('.canvas-color').click(function(){
-	$('.canvas-color').removeClass("active");
-	$(this).addClass("active");
-});
-
-// Change color theme of canvas
+	// Change color theme of canvas
 	$('.canvas-color').on('click', function(){
 		divbgColor = this.dataset.bgcolor;
 		divtxtColor = this.dataset.txtcolor;
