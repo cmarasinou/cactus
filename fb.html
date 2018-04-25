@@ -65,16 +65,13 @@
 		document.getElementById('upload').addEventListener('click', () => {
 		FB.login((response) => {
 			if (response.status === 'connected') {
-					document.getElementById('status').innerHTML = 'We are connected.';
-					document.getElementById('login').style.visibility = 'hidden';
+					console.log('We are connected.');
+					upload(response);
 				} else if (response.status === 'not_authorized') {
-					document.getElementById('status').innerHTML = 'We are not logged in.'
+					console.log('Not authorized.');
 				} else {
-					document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+					console.log("Didn't manage to login.");
 				}
-			console.log(response);
-				//TODO check if user is logged in and authorized publish_actions
-				upload(response);
 		},{scope: 'publish_actions'})
 })
 	</script>
