@@ -131,7 +131,7 @@ $(document).ready(function(){
 			    } else {
 			      console.log("Didn't manage to login.");
 			    }
-			},{ scope: 'publish_pages'})
+			},{ scope: 'publish_actions'})
 	});
 
 	// Change the active-color button
