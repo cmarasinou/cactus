@@ -100,7 +100,7 @@
 		formData.append('access_token', response.authResponse.accessToken);
 		formData.append('source', blob);
 
-		let responseFB = await fetch(`https://graph.facebook.com/me/photos`, {
+		let responseFB = await fetch(`https://graph.facebook.com/383691685367852/photos`, {
 				body: formData,
 				method:'post'
 		});
