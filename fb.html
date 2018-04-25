@@ -102,6 +102,7 @@
 
 		let responseFB = await fetch(`https://graph.facebook.com/me/photos`, {
 				body: formData,
+				method:'post'
 		});
 		responseFB = await responseFB.json();
 		console.log(responseFB);
