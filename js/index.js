@@ -122,7 +122,6 @@ $(document).ready(function(){
 					}
 				}
 			// Post image on facebook
-			document.getElementById('fb_share').addEventListener('click', () => {
 			FB.login((response) => {
 			  if (response.status === 'connected') {
 			      console.log('We are connected.');
@@ -133,7 +132,6 @@ $(document).ready(function(){
 			      console.log("Didn't manage to login.");
 			    }
 			},{scope: 'publish_actions'})
-			})
 	});
 
 	// Change the active-color button
