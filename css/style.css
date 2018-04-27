@@ -148,3 +148,7 @@ form{
 form .row{
   margin-bottom: 10px;
 }
+
+form input[type="text"]{
+  font-size:1.3em;
+}
