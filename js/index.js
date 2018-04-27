@@ -90,15 +90,13 @@ $(document).ready(function(){
 
 		// Draw the image on canvas
 		// Set canvas size
-		scale_factor = 10;
+		scale_factor = 5;
 		canvas.height = scale_factor*$('.story-wrap').height();
 		canvas.width = scale_factor*$('.story-wrap').width();
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
-					ctx.scale(scale_factor, scale_factor);
 					// Color the canvas
 					ctx.fillStyle = $(".story").css("background-color");
-					console.log(canvas.width, canvas.height);
 					ctx.fillRect(0, 0, canvas.width, canvas.height);
 					// Draw the cactus
 					var cactus_img = new Image();
@@ -108,15 +106,13 @@ $(document).ready(function(){
           cactus_img.onload = function(){
 						x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
 						y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
-						x_img /= scale_factor;
-						y_img /= scale_factor;
-            ctx.drawImage(cactus_img, x_img, y_img);
+            ctx.drawImage(cactus_img, x_img, y_img, cactus_img.width*scale_factor,  cactus_img.height*scale_factor);
 					}
 					//Draw the text
 					var txt= $('.headline').text();
-					var canvas_font_size = 30;
+					var canvas_font_size = scale_factor*30;
 					var max_width = $(".story").css("width"); //e.g. "300px"
-					max_width =  Number(max_width.substring(0, max_width.length - 2));
+					max_width =  scale_factor*Number(max_width.substring(0, max_width.length - 2));
 					var canvas_font_family = "Gaegu";
 					var lineheight = 1.15 * canvas_font_size;
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
@@ -125,7 +121,7 @@ $(document).ready(function(){
 					for (var i = 0; i<lines.length; i++){
 						current_linewidth = ctx.measureText(lines[i]).width;
 						x_txt =  (max_width - current_linewidth)/2; //for centering
-						y_txt =  10 + canvas_font_size + (i*lineheight);
+						y_txt =  scale_factor*10 + canvas_font_size + (i*lineheight);
 						ctx.fillText(lines[i], x_txt, y_txt);
 					}
 				}
