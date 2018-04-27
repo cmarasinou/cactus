@@ -34,8 +34,10 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 
 
 
-
-
+var canvas_width = 2380;
+var canvas_font_size = 150;
+//Set img size
+var img_height = 500;
 $(document).ready(function(){
 // All the color templates,
 // For each background color foreground found using http://contrast-finder.tanaguru.com/
@@ -89,8 +91,6 @@ $(document).ready(function(){
 
 		// Draw the image on canvas
 		// Set canvas size
-		var canvas_width = 2380;
-		var canvas_font_size = 175;
 		var lineheight = 1.15 * canvas_font_size;
 		padding = 50;
 		scale_factor = 5;
@@ -104,8 +104,6 @@ $(document).ready(function(){
 					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 500, since canvas renders thicker fonts
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
 					txt_height = lineheight*lines.length;
-					//Set img size
-					img_height = 500;
 					//Set canvas height
 					canvas.height = txt_height +  img_height + 4*padding; //Where 100 is space between the two
 					// Color the canvas
@@ -204,4 +202,19 @@ const upload = async (response) => {
   });
   responseFB = await responseFB.json();
   console.log(responseFB);
+};
+
+flexFont = function () {
+		div_width = Number($('.story').css("width").slice(0,-2));
+    var relFontsize =div_width*canvas_font_size/canvas_width;
+		var relImgsize =div_width*img_height/canvas_width;
+    $(".headline").css("fontSize", relFontsize);
+		$("#cactus_img").css("max-height", relImgsize);
+};
+
+window.onload = function(event) {
+    flexFont();
+};
+window.onresize = function(event) {
+    flexFont();
 };
