@@ -101,7 +101,7 @@ $(document).ready(function(){
 					var txt= $('.headline').text();
 					var max_width = canvas_width - 100; //e.g. "300px"
 					var canvas_font_family = "Gaegu";
-					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 500, since canvas renders thicker fonts
+					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
 					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
 					txt_height = lineheight*lines.length;
 					//Set canvas height
@@ -120,7 +120,7 @@ $(document).ready(function(){
 					}
 					//Draw the text
 					ctx.fillStyle = $(".story").css("color");
-					ctx.font="500 " + canvas_font_size+"px "+canvas_font_family; //font weight 500, since canvas renders thicker fonts
+					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
 					for (var i = 0; i<lines.length; i++){
 						current_linewidth = ctx.measureText(lines[i]).width;
 						x_txt =  (max_width - current_linewidth)/2 + padding; //for centering
@@ -201,7 +201,12 @@ const upload = async (response) => {
       method:'post'
   });
   responseFB = await responseFB.json();
-  console.log(responseFB);
+	console.log(responseFB);
+  if (responseFB.post_id){
+		$('#fb_share').html('Shared!');
+	} else {
+		$('#fb_share').html("Error! Didn't share");
+	}
 };
 
 flexFont = function () {
