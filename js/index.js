@@ -87,21 +87,29 @@ $(document).ready(function(){
 
 	$('#fb_share').on('click', function(){
 		var canvas = document.getElementById('canvas');
+
 		// Draw the image on canvas
 		// Set canvas size
-		canvas.height = $('.story-wrap').height();
+		scale_factor = 3;
+		canvas.height = scale_factor*$('.story-wrap').height();
+		canvas.width = scale_factor*$('.story-wrap').width();
         if (canvas.getContext) {
           var ctx = canvas.getContext('2d');
+					ctx.scale(scale_factor, scale_factor);
 					// Color the canvas
 					ctx.fillStyle = $(".story").css("background-color");
+					console.log(canvas.width, canvas.height);
 					ctx.fillRect(0, 0, canvas.width, canvas.height);
 					// Draw the cactus
 					var cactus_img = new Image();
           cactus_img.src = "./img/cactus-mini.png";
           // Make sure the image is loaded first otherwise nothing will draw.
+
           cactus_img.onload = function(){
-						x_img = (canvas.width-cactus_img.width)/2; //In center
-						y_img = canvas.height-cactus_img.height - 4; //At the bottom and elevate a bit
+						x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
+						y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
+						x_img /= scale_factor;
+						y_img /= scale_factor;
             ctx.drawImage(cactus_img, x_img, y_img);
 					}
 					//Draw the text
