@@ -18,6 +18,7 @@ html {
   height: 100%;
 }
 
+
 body {
   background-color: #E9EBEE;
 }
@@ -30,9 +31,16 @@ h1 {
   font-size: 50px;
 }
 
+.row:before,
+    .row:after {
+        content:"";
+        display: table ;
+        clear:both;
+    }
+
 .story, .story-wrap {
   margin: 0 auto;
-  width: 476px;
+  max-width: 476px;
   height: auto;
   max-height: 714px;
   min-height: 0px;
@@ -105,8 +113,8 @@ h1 {
 
 .colors-list{
   margin:0 auto;
-  width: 476px;
-  height: auto;
+  max-width: 476px;
+  height: 30px;
 }
 
 .colors-list a{
@@ -121,6 +129,12 @@ h1 {
   height:20px;
   width:20px;
   margin:5px;
+}
+
+.color-row li{
+  float:left;
+  display: inline;
+  margin: auto;
 }
 
 .active, .canvas-color:hover {

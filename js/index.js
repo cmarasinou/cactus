@@ -68,9 +68,9 @@ $(document).ready(function(){
 			added_class = " active";
 		}
 		table_html +=`
-		<td><a href="#">
+		<li><a href="#">
 			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 70%, ${txtColor} 70%);" class="canvas-color${added_class}" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
-		</a></td>
+		</a></li>
 		`;
 		// Paint the div with the active colors_array
 		bgColor = colors_array[n_active][0];
@@ -126,7 +126,7 @@ $(document).ready(function(){
 					for (var i = 0; i<lines.length; i++){
 						current_linewidth = ctx.measureText(lines[i]).width;
 						x_txt =  (max_width - current_linewidth)/2 + padding; //for centering
-						y_txt =  canvas_font_size + (i*lineheight) + padding; 
+						y_txt =  canvas_font_size + (i*lineheight) + padding;
  						ctx.fillText(lines[i], x_txt, y_txt);
 					}
 				}
