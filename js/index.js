@@ -90,7 +90,7 @@ $(document).ready(function(){
 
 		// Draw the image on canvas
 		// Set canvas size
-		scale_factor = 3;
+		scale_factor = 10;
 		canvas.height = scale_factor*$('.story-wrap').height();
 		canvas.width = scale_factor*$('.story-wrap').width();
         if (canvas.getContext) {
