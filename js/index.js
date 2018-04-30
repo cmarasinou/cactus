@@ -40,7 +40,7 @@ var canvas_font_size = 150;
 var img_height = 500;
 $(document).ready(function(){
 	//
-	$('#fb_share').html(`<p style="font-size:1.3em;"'><i class="fa fa-facebook-square fa-lg"></i> SHARE ON FACEBOOK</p>`);
+	$('#fb_share').html(`<p'><i class="fa fa-facebook-square fa-lg"></i> SHARE ON FACEBOOK</p>`);
 // All the color templates,
 // For each background color foreground found using http://contrast-finder.tanaguru.com/
 // For good contrast
@@ -72,9 +72,9 @@ $(document).ready(function(){
 			added_class = " active";
 		}
 		table_html +=`
-		<li><a href="#">
+		<li>
 			 <div style= "background-image: -webkit-linear-gradient(-45deg, ${bgColor} 70%, ${txtColor} 70%);" class="canvas-color${added_class}" data-txtColor="${txtColor}" data-bgColor="${bgColor}"></div>
-		</a></li>
+		</li>
 		`;
 		// Paint the div with the active colors_array
 		bgColor = colors_array[n_active][0];

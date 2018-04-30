@@ -117,7 +117,7 @@ h1 {
   height: 30px;
 }
 
-.colors-list a{
+.colors-list li{
   cursor: pointer;
 }
 
@@ -149,6 +149,7 @@ form .row{
   margin-bottom: 10px;
 }
 
-form input[type="text"]{
-  font-size:1.3em;
+#fb_share {
+  font-size:0.8em;
+  cursor: pointer;
 }
