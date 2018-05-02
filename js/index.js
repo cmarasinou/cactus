@@ -140,7 +140,7 @@ $(document).ready(function(){
 			    } else {
 			      console.log("Didn't manage to login.");
 			    }
-			},{ scope: 'publish_actions'})
+			},{ scope: 'publish_to_groups'})
 	});
 
 	// Change the active-color button
@@ -195,10 +195,10 @@ const upload = async (response) => {
   let formData = new FormData();
   formData.append('access_token', response.authResponse.accessToken);
   formData.append('source', blob);
-  pageid = 383691685367852; // Choose the facebook page id
+  groupid = 749281431943221; // Choose the facebook page id
   // Show to user that is uploading
   $('#fb_share').html('<i class="fa fa-circle-o-notch fa-spin"></i> Sharing');
-  let responseFB = await fetch('https://graph.facebook.com/'+pageid+'/photos', {
+  let responseFB = await fetch('https://graph.facebook.com/'+groupid+'/photos', {
       body: formData,
       method:'post'
   });
