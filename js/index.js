@@ -141,7 +141,7 @@ $(document).ready(function(){
 			    } else {
 			      console.log("Didn't manage to login.");
 			    }
-			},{ scope: 'publish_to_groups publish_actions user_managed_groups'})
+			},{ scope: 'publish_to_groups user_managed_groups'})
 	});
 
 	// Change the active-color button
@@ -161,7 +161,7 @@ $(document).ready(function(){
 // initialize and setup facebook js sdk
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '2022149611440580',
+      appId      : '369494873574074',
       xfbml      : true,
       version    : 'v3.0'
     });
