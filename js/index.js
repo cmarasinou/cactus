@@ -161,9 +161,9 @@ $(document).ready(function(){
 // initialize and setup facebook js sdk
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '1616038958474519',
+      appId      : '2022149611440580',
       xfbml      : true,
-      version    : 'v2.5'
+      version    : 'v3.0'
     });
 };
 (function(d, s, id){

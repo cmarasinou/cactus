@@ -26,23 +26,3 @@ const dataURItoBlob = (dataURI) => {
       type: 'image/jpeg'
   });
 }
-
-// Upload picture on facebook  group
-
-const upload = async (response) => {
-  let canvas = document.getElementById('canvas');
-  let dataURL = canvas.toDataURL('image/jpeg', 1.0);
-  let blob = dataURItoBlob(dataURL);
-  let formData = new FormData();
-  formData.append('access_token', response.authResponse.accessToken);
-  formData.append('source', blob);
-  pageid = 383691685367852; // Choose the facebook page id
-  // Show to user that is uploading
-  $('#fb_share').html('<i class="fa fa-circle-o-notch fa-spin"></i> Sharing');
-  let responseFB = await fetch('https://graph.facebook.com/'+pageid+'/photos', {
-      body: formData,
-      method:'post'
-  });
-  responseFB = await responseFB.json();
-  console.log(responseFB);
-};
