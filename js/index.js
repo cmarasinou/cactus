@@ -135,6 +135,7 @@ $(document).ready(function(){
 			  if (response.status === 'connected') {
 			      console.log('We are connected.');
 			      upload(response);
+						console.log(response);
 			    } else if (response.status === 'not_authorized') {
 			      console.log('Not authorized.');
 			    } else {
