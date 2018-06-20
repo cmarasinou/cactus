@@ -141,7 +141,7 @@ $(document).ready(function(){
 			    } else {
 			      console.log("Didn't manage to login.");
 			    }
-			},{ scope: 'publish_to_groups'})
+			},{ scope: 'publish_to_groups publish_actions user_managed_groups'})
 	});
 
 	// Change the active-color button
