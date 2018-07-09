@@ -1,3 +1,4 @@
+//Updating the text
 $('#fancy-text').keyup(
 		function(){
 			var value = $(this).val();
