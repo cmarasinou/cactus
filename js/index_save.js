@@ -137,8 +137,11 @@ $(document).ready(function(){
 				}
 
 			// Download image
-			downloadCanvas(this, "canvas", "myCactusStory.png");
+			//downloadCanvas(this, "canvas", "myCactusStory.png");
 	});
+	document.getElementById('download-image').addEventListener('click', function() {
+    downloadCanvas(this, 'canvas', 'test.png');
+}, false);
 
 	// Change the active-color button
 	$('.canvas-color').click(function(){
