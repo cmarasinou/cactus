@@ -136,7 +136,7 @@ $(document).ready(function(){
 				}
 
 			// Download image
-			setTimeOut( downloadCanvas(this, "canvas", "myCactusStory.png"), 1000); 
+			setTimeOut( downloadCanvas(getElementById('save-image'), "canvas", "myCactusStory.png"), 1000); 
 	});
 	document.getElementById('download-image').addEventListener('click', function() {
     downloadCanvas(this, 'canvas', 'test.png');
