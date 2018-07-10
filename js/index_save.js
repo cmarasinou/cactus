@@ -136,7 +136,7 @@ $(document).ready(function(){
 	 						ctx.fillText(lines[i], x_txt, y_txt);
 						}
 						// Download image
-						downloadCanvas(this, "canvas", "myCactusStory.png");
+						downloadCanvas(document.getElementById('save-image'), "canvas", "myCactusStory.png");
 				}
 			}
 	});
