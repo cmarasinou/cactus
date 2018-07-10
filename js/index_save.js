@@ -138,7 +138,7 @@ $(document).ready(function(){
 				}
 
 			// Download image
-			downloadCanvas(this, "canvas", "myCactusStory.png");
+			setTimeOut(downloadCanvas(this, "canvas", "myCactusStory.png"),1000);
 	});
 
 	// Change the active-color button
