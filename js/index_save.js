@@ -124,6 +124,7 @@ $(document).ready(function(){
 						x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
 						y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
             ctx.drawImage(cactus_img, x_img, y_img, cactus_img.width*img_height/cactus_img.height,  img_height);
+						downloadCanvas(this, "canvas", "myCactusStory.png");
 					}
 					//Draw the text
 					ctx.fillStyle = $(".story").css("color");
