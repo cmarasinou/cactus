@@ -3,6 +3,7 @@ $('#fancy-text').keyup(
 		function(){
 			var value = $(this).val();
 			$('.headline').text(value);
+			drawCanvas();
 		}
 	);
 
@@ -39,6 +40,50 @@ function downloadCanvas(link, canvasId, filename) {
     link.href = document.getElementById(canvasId).toDataURL();
 		console.log(canvasId);
     link.download = filename;
+}
+
+function drawCanvas(){
+		var canvas = document.getElementById('canvas');
+		// Draw the image on canvas
+		// Set canvas size
+		var lineheight = 1.15 * canvas_font_size;
+		padding = 50;
+		scale_factor = 5;
+		canvas.width = canvas_width;
+			if (canvas.getContext) {
+				var ctx = canvas.getContext('2d');
+				//Load text, split in lines, find height of it
+				var txt= $('.headline').text();
+				var max_width = canvas_width - 100; //e.g. "300px"
+				var canvas_font_family = "Gaegu";
+				ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
+				lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
+				txt_height = lineheight*lines.length;
+				//Set canvas height
+				canvas.height = txt_height +  img_height + 4*padding; //Where 100 is space between the two
+				// Color the canvas
+				ctx.fillStyle = $(".story").css("background-color");
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+				// Draw the image
+				var cactus_img = new Image();
+				cactus_img.src = "./img/cactus-mini.png";
+				// Make sure the image is loaded first otherwise nothing will draw.
+				cactus_img.onload = function(){
+					x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
+					y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
+					ctx.drawImage(cactus_img, x_img, y_img, cactus_img.width*img_height/cactus_img.height,  img_height);
+				}
+
+				//Draw the text
+				ctx.fillStyle = $(".story").css("color");
+				ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
+				for (var i = 0; i<lines.length; i++){
+					current_linewidth = ctx.measureText(lines[i]).width;
+					x_txt =  (max_width - current_linewidth)/2 + padding; //for centering
+					y_txt =  canvas_font_size + (i*lineheight) + padding;
+					ctx.fillText(lines[i], x_txt, y_txt);
+				}
+			}
 }
 
 
@@ -86,60 +131,18 @@ $(document).ready(function(){
 		bgColor = colors_array[n_active][0];
 		txtColor = colors_array[n_active][1];
 		$(".story").css({"background-color": bgColor, "color": txtColor});
+		drawCanvas();
 	}
-
 	$('.color-row').html(table_html);
 
-/////////////////////////////////////
-// Create Image
-////////////////////////////////////
 
+//Download image when clicking save
 	$('#save-image').on('click', function(){
-		var canvas = document.getElementById('canvas');
-
-		// Draw the image on canvas
-		// Set canvas size
-		var lineheight = 1.15 * canvas_font_size;
-		padding = 50;
-		scale_factor = 5;
-		canvas.width = canvas_width;
-        if (canvas.getContext) {
-					var ctx = canvas.getContext('2d');
-					//Load text, split in lines, find height of it
-					var txt= $('.headline').text();
-					var max_width = canvas_width - 100; //e.g. "300px"
-					var canvas_font_family = "Gaegu";
-					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
-					lines = text2lines(txt, ctx, canvas_font_size, canvas_font_family, max_width);
-					txt_height = lineheight*lines.length;
-					//Set canvas height
-					canvas.height = txt_height +  img_height + 4*padding; //Where 100 is space between the two
-					// Color the canvas
-					ctx.fillStyle = $(".story").css("background-color");
-					ctx.fillRect(0, 0, canvas.width, canvas.height);
-					// Draw the image
-					var cactus_img = new Image();
-          cactus_img.src = "./img/cactus-mini.png";
-          // Make sure the image is loaded first otherwise nothing will draw.
-          cactus_img.onload = function(){
-						x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
-						y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
-            ctx.drawImage(cactus_img, x_img, y_img, cactus_img.width*img_height/cactus_img.height,  img_height);
-					}
-					//Draw the text
-					ctx.fillStyle = $(".story").css("color");
-					ctx.font="600 " + canvas_font_size+"px "+canvas_font_family; //font weight 600, since canvas renders thicker fonts
-					for (var i = 0; i<lines.length; i++){
-						current_linewidth = ctx.measureText(lines[i]).width;
-						x_txt =  (max_width - current_linewidth)/2 + padding; //for centering
-						y_txt =  canvas_font_size + (i*lineheight) + padding;
- 						ctx.fillText(lines[i], x_txt, y_txt);
-					}
-				}
-
 			// Download image
-			setTimeOut(downloadCanvas(getElementById("save-image"), "canvas", "myCactusStory.png"),1000);
-	});
+			  downloadCanvas(this, "canvas", "myCactusStory.png");
+});
+
+
 
 	// Change the active-color button
 	$('.canvas-color').click(function(){
@@ -152,8 +155,10 @@ $(document).ready(function(){
 		divbgColor = this.dataset.bgcolor;
 		divtxtColor = this.dataset.txtcolor;
 		$(".story").css({"background-color": divbgColor, "color": divtxtColor});
+		drawCanvas();
 	});
 });
+
 
 
 
