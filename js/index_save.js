@@ -35,7 +35,9 @@ function text2lines(txt, ctx_canvas, font_size, font_family, max_width){
 
 // Download the Canvas
 function downloadCanvas(link, canvasId, filename) {
-    link.href = document.getElementById(canvasId).toDataURL("image/jpeg");
+
+    link.href = document.getElementById(canvasId).toDataURL();
+		console.log(canvasId);
     link.download = filename;
 }
 
@@ -136,11 +138,8 @@ $(document).ready(function(){
 				}
 
 			// Download image
-			setTimeOut( downloadCanvas(getElementById('save-image'), "canvas", "myCactusStory.png"), 1000); 
+			downloadCanvas(this, "canvas", "myCactusStory.png");
 	});
-	document.getElementById('download-image').addEventListener('click', function() {
-    downloadCanvas(this, 'canvas', 'test.png');
-}, false);
 
 	// Change the active-color button
 	$('.canvas-color').click(function(){
