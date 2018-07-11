@@ -185,10 +185,13 @@ a.button:hover{
 .wrapper{
   /* margin-left: 5%; */
   width:50%;
+  min-width:300px;
+  padding-top: 10px;
 }
 .wrapper-fb{
   /* margin-left: 5%; */
   width:35%;
+  padding-top: 10px;
 }
 
 .container {
@@ -197,6 +200,6 @@ a.button:hover{
     display: -webkit-flex;
     flex-wrap: wrap;
     text-align: center;
-    margin-left:10%;
-    margin-right:10%;
+    padding-left:5%;
+    padding-right:0%;
 }
