@@ -185,7 +185,7 @@ a.button:hover{
 .wrapper{
   /* margin-left: 5%; */
   width:46%;
-  min-width:400px;
+  min-width:350px;
   margin: 2%;
   padding:2%;
 }
@@ -193,7 +193,7 @@ a.button:hover{
   /* margin-left: 5%; */
   width:46%;
   padding:2%;
-  min-width:400px;
+  min-width:350px;
   margin: 2%;
 }
 
