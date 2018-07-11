@@ -184,19 +184,15 @@ a.button:hover{
 
 .wrapper{
   /* margin-left: 5%; */
-  width:46%;
+  width:50%;
   min-width:350px;
-  margin: 2%;
-  padding:2%;
   padding-top: 0;
   margin-top:0;
 }
 .wrapper-fb{
   /* margin-left: 5%; */
-  width:46%;
-  padding:2%;
+  width:50%;
   min-width:350px;
-  margin: 2%;
   padding-top: 0;
   margin-top:0;
 }
