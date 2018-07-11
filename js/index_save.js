@@ -66,13 +66,14 @@ function drawCanvas(){
 				ctx.fillRect(0, 0, canvas.width, canvas.height);
 				// Draw the image
 				var cactus_img = new Image();
-				cactus_img.src = "./img/cactus-mini.png";
+				cactus_img.src = "./img/cactus.png";
 				// Make sure the image is loaded first otherwise nothing will draw.
 				cactus_img.onload = function(){
-					x_img = (canvas.width-scale_factor*cactus_img.width)/2; //In center
-					y_img = canvas.height-scale_factor*cactus_img.height - scale_factor*4; //At the bottom and elevate a bit
+					x_img = (canvas.width-cactus_img.width*img_height/cactus_img.height)/2; //In center
+					y_img = canvas.height-img_height - scale_factor*4; //At the bottom and elevate a bit
 					ctx.drawImage(cactus_img, x_img, y_img, cactus_img.width*img_height/cactus_img.height,  img_height);
 				}
+				console.log(cactus_img.width, cactus_img.height);
 
 				//Draw the text
 				ctx.fillStyle = $(".story").css("color");

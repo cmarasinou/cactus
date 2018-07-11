@@ -9,7 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=2022149611440580&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <body>
 
 
@@ -18,6 +25,11 @@
 <h1>
 	WRITE YOUR CACTUS STORY
 </h1>
+
+
+<div class="container">
+
+<div class="wrapper">
 
 
 <form>
@@ -49,11 +61,20 @@
   <a class="button" id="save-image" tabindex="0"><p ><i style="margin-right:10px;" class="fas fa-save fa-lg"></i>SAVE IMAGE</p></button>
     </a>
 
+</div>
 
-<p class="byline">&copy; by Tomis.</p>
+<div class="wrapper-fb">
+  <div id="fb-banner" class="fb-page" data-href="https://www.facebook.com/XarasTinKaktosiniMou/" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true"  data-height="540" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/XarasTinKaktosiniMou/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/XarasTinKaktosiniMou/">Xaras Tin Kaktosini Mou</a></blockquote></div>
+</div>
+
+</div>
 
 
-  <canvas id="canvas" width="100" height="100" hidden></canvas>
+<p class="byline">Post your story in our facebook page <a href="https://fb.me/XarasTinKaktosiniMou"><i  class="fab fa-facebook"></i> Xaras tin kaktosini mou</a></br>&copy; by Tomis.</p>
+
+<canvas id="canvas" width="100" height="100" hidden></canvas>
+
+
 
 <script src='js/jquery.min.js'></script>
 <script  src="js/canvas2image.js"></script>

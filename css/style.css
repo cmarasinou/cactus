@@ -174,3 +174,29 @@ a.button:hover{
 .byline{
   color:black;
 }
+.byline a{
+  color:black;
+}
+
+#fb-banner{
+  max-width: 600px;
+}
+
+.wrapper{
+  /* margin-left: 5%; */
+  width:50%;
+}
+.wrapper-fb{
+  /* margin-left: 5%; */
+  width:35%;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-left:10%;
+    margin-right:10%;
+}
