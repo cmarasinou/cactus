@@ -190,8 +190,10 @@ a.button:hover{
 }
 .wrapper-fb{
   /* margin-left: 5%; */
-  width:35%;
+  width:50%;
   padding-top: 10px;
+  min-width:300px;
+  background-color: white;
 }
 
 .container {
